@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 
 namespace nkn.UIScreen
 {
@@ -18,6 +17,9 @@ namespace nkn.UIScreen
         [SerializeField]
         UIScreen panel3;
 
+        [SerializeField]
+        float changeDuration = 0.1f;
+
         private void Start()
         {
             nextButton.SetAction(async () =>
@@ -31,24 +33,42 @@ namespace nkn.UIScreen
             });
         }
 
-
-
         public async override UniTask OnEnterScreenAsync()
         {
-            rectTransform.anchoredPosition = new Vector3(0, 1500, 0);
-            await rectTransform.DOAnchorPosY(
-                endValue: 0f,
-                duration: 0.1f)
-                .SetEase(Ease.OutSine);
+            rectTransform.anchoredPosition = new Vector2(0, 1500);
+
+            Vector2 startPosition = rectTransform.anchoredPosition;
+            Vector2 endPosition = new Vector2(0, 0);
+
+            float t = 0f;
+            while (t < changeDuration)
+            {
+                t += Time.deltaTime;
+                float normalizedTime = t / changeDuration;
+                rectTransform.anchoredPosition = Vector2.Lerp(startPosition, endPosition, normalizedTime);
+                await UniTask.Yield();
+            }
+
+            rectTransform.anchoredPosition = endPosition;
         }
 
         public async override UniTask OnExitScreenAsync()
         {
-            rectTransform.anchoredPosition = new Vector3(0, 0, 0);
-            await rectTransform.DOAnchorPosY(
-                endValue: 1500f,
-                duration: 0.1f)
-                .SetEase(Ease.OutSine);
+            rectTransform.anchoredPosition = new Vector2(0, 0);
+
+            Vector2 startPosition = rectTransform.anchoredPosition;
+            Vector2 endPosition = new Vector2(0, 1500);
+
+            float t = 0f;
+            while (t < changeDuration)
+            {
+                t += Time.deltaTime;
+                float normalizedTime = t / changeDuration;
+                rectTransform.anchoredPosition = Vector2.Lerp(startPosition, endPosition, normalizedTime);
+                await UniTask.Yield();
+            }
+
+            rectTransform.anchoredPosition = endPosition;
         }
     }
 }
