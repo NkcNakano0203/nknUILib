@@ -16,11 +16,6 @@ namespace nkn.UIScreen
             rectTransform = GetComponent<RectTransform>();
         }
 
-        public UniTask ButtonAction()
-        {
-            return UniTask.CompletedTask;
-        }
-
         public void SetManager(IScreenManager screenManager)
         {
             ScreenManager = screenManager;
