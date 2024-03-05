@@ -7,9 +7,6 @@ namespace nkn.UIScreen
     public class Screen1 : UIScreen
     {
         [SerializeField]
-        ObservableButton backButton;
-
-        [SerializeField]
         ObservableButton nextButton;
 
         [SerializeField]
@@ -23,8 +20,6 @@ namespace nkn.UIScreen
 
         private void Start()
         {
-            backButton.SetAction(BackScreenAsync);
-
             nextButton.SetAction(async () =>
             {
                 await ChangeScreenAsync(panel2);
@@ -32,7 +27,7 @@ namespace nkn.UIScreen
 
             nextButton2.SetAction(async () =>
             {
-                await ChangeScreenAsync(panel2);
+                await ChangeScreenAsync(panel3);
             });
         }
 

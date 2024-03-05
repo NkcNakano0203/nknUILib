@@ -6,7 +6,6 @@ namespace nkn.UIScreen
     /// <summary>
     /// UIスクリーンの継承用クラス
     /// </summary>
-    [RequireComponent(typeof(RectTransform))]
     public abstract class UIScreen : MonoBehaviour
     {
         protected IScreenManager ScreenManager { get; private set; }

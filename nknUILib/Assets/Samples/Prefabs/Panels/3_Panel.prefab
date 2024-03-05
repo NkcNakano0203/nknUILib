@@ -188,7 +188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8947974682538124533, guid: 3b3ddf9cedf694646a1817375770ce2a, type: 3}
       propertyPath: m_Text
-      value: Panel3
+      value: Panel4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
